@@ -25,7 +25,7 @@ navbarMenu.addEventListener('click', (event) => {
         return;
     }
     console.log(event.target.dataset.link);
-    scrollIntoViews(link)
+    scrollIntoView(link)
 })
 
 
@@ -33,7 +33,7 @@ navbarMenu.addEventListener('click', (event) => {
 
 const homeContactBtn = document.querySelector('.home__contact')
 homeContactBtn.addEventListener('click', () => {
-    scrollIntoViews('#contact')
+    scrollIntoView('#contact')
 });
 
 
@@ -48,10 +48,26 @@ document.addEventListener('scroll', () => {
 })
 
 
+// Show "arrow up" button when scrolling down
+
+const arrowUp = document.querySelector('.arrow-up')
+document.addEventListener('scroll', () => {
+    if (window.scrollY > homeHeight / 2) {
+        arrowUp.classList.add('visible');
+    } else {
+        arrowUp.classList.remove('visible')
+    }
+})
 
 
+// Handle click on the "arrow up" button
 
-function scrollIntoViews(selector) {
+arrowUp.addEventListener('click', () => {
+    scrollIntoView('#home');
+})
+
+
+function scrollIntoView(selector) {
     const scrollTO = document.querySelector(selector);
     scrollTO.scrollIntoView({ behavior: 'smooth' });
 }
